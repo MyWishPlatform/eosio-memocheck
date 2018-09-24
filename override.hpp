@@ -42,7 +42,7 @@ void memocheck::transfer(uint64_t sender, uint64_t receiver) {
 		}
 		checksum256 hash;
 		sha256(memo, 8, &hash);
-		eosio_assert((hash.hash[0] == memo[8]) && (hash.hash[1] == memo[9]), "Invalid checksum");
+		eosio_assert((hash.hash[0] == static_cast<uint8_t>(memo[8])) && (hash.hash[1] == static_cast<uint8_t>(memo[9])), "Invalid checksum");
 		this->on_deposit(data.from, eosio::extended_asset(data.quantity, N(eosio.token)));
 	}
 }
